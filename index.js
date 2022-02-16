@@ -12,6 +12,7 @@ const generateHTML = require("./src/generateHTML");
 const managers = [];
 const engineers = [];
 const interns = [];
+const cards = [];
 
 const managerquestions = [
     {
