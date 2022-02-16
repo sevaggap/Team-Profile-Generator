@@ -1,9 +1,15 @@
 const inquirer = require("inquirer");
 const fs = require('fs');
-const employee = require("./lib/Employee");
-const manager = require("./lib/Manager");
-const engineer = require("./lib/Engineer");
-const intern = require("./lib/Intern");
+const Employee = require("./lib/Employee");
+const Manager = require("./lib/Manager");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
+const generateMarkdown = require("./src/generateMarkdown")
+
+
+const managers = [];
+const engineers = [];
+const interns = [];
 
 const managerquestions = [
     {
@@ -32,17 +38,17 @@ const engineerquestions = [
     {
         type: 'input',
         message: 'What is the engineers name?',
-        name: 'managername',
+        name: 'engineername',
       },
       {
         type: 'input',
         message: 'What is their employee ID?',
-        name: 'managerID',
+        name: 'engineerID',
       },
       {
         type: 'input',
         message: 'What is their email address?',
-        name: 'manageremail',
+        name: 'engineeremail',
       },
       {
         type: 'input',
@@ -55,17 +61,17 @@ const internquestions = [
     {
         type: 'input',
         message: 'What is the interns name?',
-        name: 'managername',
+        name: 'internname',
       },
       {
         type: 'input',
         message: 'What is their ID?',
-        name: 'managerID',
+        name: 'internID',
       },
       {
         type: 'input',
-        message: 'What is their address?',
-        name: 'manageremail',
+        message: 'What is their email address?',
+        name: 'internemail',
       },
       {
         type: 'input',
@@ -86,19 +92,33 @@ const selection = [
 function init() {
     inquirer.prompt(managerquestions)
     .then (function (data) {
-        const manager1 = new manager(data.managername,data.managerID,data.manageremail,data.manageroffice);
-        tryingthis();
+        const manager = new Manager(data.managername,data.managerID,data.manageremail,data.manageroffice);
+        managers.push(manager);
+        console.log(managers);
+        createEmployees();
     })
     
 }
 
-function tryingthis () {
+function createEmployees () {
     inquirer.prompt(selection)
     .then(function(data) {
         if(data.choice == "Engineer") {
             inquirer.prompt(engineerquestions)
+            .then(function(data) {
+              const engineer = new Engineer(data.engineername,data.engineerID,data.engineeremail,data.github)
+              engineers.push(engineer);
+              console.log(engineers); 
+              createEmployees();
+            });
         } else if(data.choice == "Intern") {
             inquirer.prompt(internquestions)
+            .then(function(data) {
+              const intern = new Intern(data.internname,data.internID,data.internemail,data.school)
+              interns.push(intern);
+              console.log(interns); 
+              createEmployees();
+            });
         } else if (data.choice == "I don't want to add anymore team members") {
             console.log("you're done")
         }
