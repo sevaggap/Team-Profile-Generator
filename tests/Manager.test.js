@@ -1,7 +1,7 @@
 const Manager = require('../lib/Manager');
 
 describe('Testing',() => {
-    it('can set office via constructor arguments', () => {
+    it('can set office number via constructor arguments', () => {
         const manager = new Manager("John",14,"john@john.com",14);
         const {officeNumber} = manager;
 
