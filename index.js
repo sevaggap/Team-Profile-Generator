@@ -4,7 +4,9 @@ const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const generateMarkdown = require("./src/generateMarkdown")
+const generateCards = require("./src/generateCards");
+const generateHTML = require("./src/generateHTML");
+
 
 
 const managers = [];
