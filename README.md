@@ -29,7 +29,7 @@ The application should appear as follows after the user has successfully inputed
 
 ![Application success](./imgs/Application-Screenshot-2.png)
 
-The generated README should appear as follows:
+The generated HTML should appear as follows:
 
 ![Generated README](./imgs/Application-Screenshot-3.png)
 
@@ -52,5 +52,5 @@ limitations under the License.
 
  <a name="github"></a>
 ## GitHub
-Github: sevaggap
-Walkthrough Video: https://drive.google.com/file/d/1yGp7aUeOIGzjF2dwAe8Sr90aETju2SAh/view?usp=sharing
+Github: sevaggap <br>
+Walkthrough Video: 

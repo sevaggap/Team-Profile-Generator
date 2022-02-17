@@ -3,8 +3,8 @@ function generateCards (data,role) {
   <h1 class="card-img-top bg-primary text-light">${data.name} <br> ${role}</h1> 
   <ul class="list-group list-group-flush">
       <li class="list-group-item">ID: ${data.id}</li>
-      <li class="list-group-item">Email: ${data.email}</li>
-      <li class="list-group-item">GitHub: ${data.github}</li>
+      <li class="list-group-item">Email: <a href ="mailto:${data.email}">${data.email}</a></li>
+      <li class="list-group-item">GitHub: <a href="https://github.com/${data.github}">${data.github}</a> </li>
     </ul>
   </div>`
   }
