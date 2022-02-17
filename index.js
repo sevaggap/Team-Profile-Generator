@@ -103,7 +103,6 @@ function init() {
         console.log(cards);
         createEmployees();
     })
-    
 }
 
 function createEmployees () {
