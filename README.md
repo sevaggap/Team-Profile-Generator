@@ -11,7 +11,7 @@
 <a name="desc"></a>
 ## Description
 
-The purpose of this project was to create a command-line application that takes user information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. Testing was also required for this project, as we were responsible for writing a unit test for every part of the code and ensursing it passed each test.
+The purpose of this project was to create a command-line application that takes user information about employees on a software engineering team, then generates an HTML webpage that displays summaries for each person. Testing was also required for this project, as we were responsible for writing a unit test for every part of the code and ensuring it passed each test.
 
 <a name="install"></a>
 ## Installation
