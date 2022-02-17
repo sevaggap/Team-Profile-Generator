@@ -1,13 +1,12 @@
 const inquirer = require("inquirer");
 const fs = require('fs');
-const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
-const generateCards = require("./src/generateCards");
+const generateEngineer = require("./src/generateEngineer");
+const generateManager = require("./src/generateManager");
+const generateIntern = require("./src/generateIntern");
 const generateHTML = require("./src/generateHTML");
-
-
 
 const managers = [];
 const engineers = [];
@@ -96,8 +95,12 @@ function init() {
     inquirer.prompt(managerquestions)
     .then (function (data) {
         const manager = new Manager(data.managername,data.managerID,data.manageremail,data.manageroffice);
+        let role = manager.getRole();
         managers.push(manager);
         console.log(managers);
+        const card = generateManager(manager,role);
+        cards.push(card);
+        console.log(cards);
         createEmployees();
     })
     
@@ -109,23 +112,38 @@ function createEmployees () {
         if(data.choice == "Engineer") {
             inquirer.prompt(engineerquestions)
             .then(function(data) {
-              const engineer = new Engineer(data.engineername,data.engineerID,data.engineeremail,data.github)
+              const engineer = new Engineer(data.engineername,data.engineerID,data.engineeremail,data.github);
+              let role = engineer.getRole();
               engineers.push(engineer);
               console.log(engineers); 
+              const card = generateEngineer(engineer,role);
+              cards.push(card);
+              console.log(cards);
               createEmployees();
             });
         } else if(data.choice == "Intern") {
             inquirer.prompt(internquestions)
             .then(function(data) {
-              const intern = new Intern(data.internname,data.internID,data.internemail,data.school)
+              const intern = new Intern(data.internname,data.internID,data.internemail,data.school);
+              let role = intern.getRole();
               interns.push(intern);
               console.log(interns); 
+              const card = generateIntern(intern,role);
+              cards.push(card);
               createEmployees();
             });
         } else if (data.choice == "I don't want to add anymore team members") {
-            console.log("you're done")
+            const stringcards = cards.join('');
+            const html = generateHTML(stringcards);
+            writeToFile("./dist/team.html",html);
+            console.log("You have successfully generated a team roster!")
         }
     })
 }
+
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) =>
+  err? console.error(err) : console.log('File successfully written!')
+  )}
 
 init();
